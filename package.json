@@ -1,0 +1,31 @@
+{
+  "name": "@red-cup-engineering/read-hive-account-history-service",
+  "version": "0.1.1",
+  "description": "Reads a Hive account's operation history, paged from two independent public nodes via condenser_api.get_account_history and witnessed against each other, filtered to the standard ledger-relevant operation kinds and an optional time range, with every VESTS-carrying field also carried as HP at the chain's vests-to-HP ratio (the operation's own embedded conversion when it carries one, else the current chain ratio, both stated so a consumer never confuses the two).",
+  "type": "module",
+  "private": false,
+  "license": "UNLICENSED",
+  "exports": "./scripts/read-hive-account-history.mjs",
+  "bin": {
+    "read-hive-account-history": "scripts/read-hive-account-history.mjs"
+  },
+  "files": [
+    "scripts",
+    "README.md",
+    "package.json",
+    "schemas"
+  ],
+  "dependencies": {
+    "@red-cup-engineering/metrologic": "workspace:*",
+    "@red-cup-engineering/hive-blockchain-client-service": "workspace:*",
+    "@red-cup-engineering/exact-number-data-service": "workspace:*"
+  },
+  "scripts": {
+    "check": "node --check scripts/read-hive-account-history.mjs",
+    "test": "node --test test/*.test.mjs",
+    "pack:dry-run": "npm pack --dry-run --ignore-scripts"
+  },
+  "engines": {
+    "node": ">=24.2.0"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://registry.561.group/@red-cup-engineering/read-hive-account-history-service/schema/read-hive-account-history.input.schema.json",
+  "title": "readHiveAccountHistoryInput",
+  "type": "object",
+  "required": ["account", "nodes"],
+  "properties": {
+    "account": { "type": "string", "minLength": 1 },
+    "nodes": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "string", "format": "uri" }
+    },
+    "operationKinds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Overrides the default ledger-relevant operation-kind set."
+    },
+    "from": {
+      "type": "object",
+      "properties": {
+        "time": { "type": "string", "format": "date-time" },
+        "block": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "to": {
+      "type": "object",
+      "properties": {
+        "time": { "type": "string", "format": "date-time" },
+        "block": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

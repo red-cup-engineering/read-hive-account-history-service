@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://registry.561.group/@red-cup-engineering/read-hive-account-history-service/schema/read-hive-account-history.output.schema.json",
+  "title": "readHiveAccountHistoryOutput",
+  "type": "object",
+  "required": ["account", "nodesUsed", "operationCount", "operations", "vestsToHpRatio", "refusals"],
+  "properties": {
+    "account": { "type": "string" },
+    "nodesUsed": { "type": "array", "items": { "type": "string" } },
+    "operationKinds": { "type": "array", "items": { "type": "string" } },
+    "from": { "type": ["string", "null"] },
+    "to": { "type": ["string", "null"] },
+    "pagesFetched": { "type": "integer" },
+    "operationCount": { "type": "integer" },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["index", "block", "trxId", "timestamp", "kind", "payload", "witnessed", "witnessNodes"],
+        "properties": {
+          "index": { "type": "integer" },
+          "block": { "type": "integer" },
+          "trxId": { "type": "string" },
+          "trxInBlock": { "type": "integer" },
+          "opInTrx": { "type": "integer" },
+          "virtual": { "type": "boolean" },
+          "timestamp": { "type": "string" },
+          "kind": { "type": "string" },
+          "payload": { "type": "object" },
+          "vestsHp": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["field", "vests", "hp", "ratio", "ratioSource"],
+              "properties": {
+                "field": { "type": "string" },
+                "vests": { "type": "string" },
+                "hp": { "type": "string" },
+                "ratio": { "type": "string" },
+                "ratioSource": { "type": "string", "enum": ["op-embedded", "current-chain-ratio"] }
+              }
+            }
+          },
+          "witnessed": { "type": "boolean" },
+          "witnessNodes": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "vestsToHpRatio": {
+      "type": "object",
+      "required": ["current", "source", "atBlock"],
+      "properties": {
+        "current": { "type": "string" },
+        "source": { "type": "string" },
+        "atBlock": { "type": "integer" }
+      }
+    },
+    "refusals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["reason", "start"],
+        "properties": {
+          "reason": { "type": "string", "enum": ["witness-disagreement", "witness-fetch-failed"] },
+          "start": { "type": "integer" },
+          "error": { "type": "string" }
+        }
+      }
+    }
+  }
+}
