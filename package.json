@@ -8,7 +8,7 @@
   },
   "type": "module",
   "private": false,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "exports": "./scripts/read-hive-account-history.mjs",
   "bin": {
     "read-hive-account-history": "scripts/read-hive-account-history.mjs"
@@ -31,5 +31,9 @@
   },
   "engines": {
     "node": ">=24.2.0"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/561-group/.github/blob/main/TIPS.md"
   }
 }

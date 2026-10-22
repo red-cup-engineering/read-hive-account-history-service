@@ -1,5 +1,12 @@
 # @red-cup-engineering/read-hive-account-history-service
 
+<!-- 561-group-standards:badges:start -->
+[![Red Cup Engineering](https://img.shields.io/badge/561%20Group-Red%20Cup%20Engineering-c0392b)](https://github.com/red-cup-engineering)
+[![License: MIT](https://img.shields.io/badge/license-MIT-c0392b)](LICENSE)
+[![Indigenous data: CARE](https://img.shields.io/badge/Indigenous%20data-CARE-4b6f44)](https://github.com/red-cup-engineering/.github/blob/main/GOVERNANCE.md)
+[![Tips welcome](https://img.shields.io/badge/tips-welcome-d4a017)](https://github.com/561-group/.github/blob/main/TIPS.md)
+<!-- 561-group-standards:badges:end -->
+
 Reads a Hive account's operation history, paged from two independent public nodes via `condenser_api.get_account_history` and witnessed against each other page by page, filtered to the standard ledger-relevant operation kinds (`transfer`, `transfer_to_vesting`, `withdraw_vesting`, `fill_vesting_withdraw`, `claim_reward_balance`, `author_reward`, `curation_reward`, `fill_order`, `limit_order_create`/`cancel`, `transfer_to_savings`/`from`, `interest`, `fill_convert_request`, the collateralized-convert pair, `proposal_pay`, `delegate_vesting_shares`, and their supporting virtual/completion ops) and an optional `[from, to)` time range. Every VESTS-carrying field is carried alongside its HP equivalent at the chain's vests-to-HP ratio: the operation's own embedded conversion (`transfer_to_vesting_completed`, `fill_vesting_withdraw`) when it records one, else the current chain ratio — both stated on the field so a consumer never confuses the two. Read-only; no key is ever required or accepted.
 
 ## Operation
